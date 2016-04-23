@@ -141,6 +141,10 @@ ion-header-bar.bar.bar-header.csui-enterprise{
 ion-content.csui.sidemenu ion-item a.item-content{
   color: white;
   background-color: transparent;
+  border-top: 3px;
+  border-bottom: 3px;
+  border-bottom: 3px;
+  border-right: 3px;
 }
 
 /* Login

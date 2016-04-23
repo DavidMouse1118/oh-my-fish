@@ -180,7 +180,6 @@ angular.module('starter.controllers', [])
     var hideSheet = $ionicActionSheet.show({
       buttons: [
       { text: 'View' },
-      { text: 'Add To Favourites' },
       { text: 'Download'}
       ],
       destructiveText: 'Delete',
