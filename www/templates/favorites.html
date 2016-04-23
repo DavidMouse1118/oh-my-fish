@@ -1,0 +1,25 @@
+<ion-view view-title="Favorites">
+  <ion-nav-buttons side="left" >
+    <a style="width: 100%;" href="#/app/landingpage"><button class="csui-home-button"></button></a>
+  </ion-nav-buttons>
+
+  <ion-header-bar class="bar bar-subheader item-input-inset" style="min-height: 20px; padding-top: 60px; padding-bottom: 30px">
+    <label class="item-input-wrapper search">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input placeholder="Search for a file..." ng-keyup="searchList($event)" type="text">
+    </label>
+  </ion-header-bar>
+
+  <ion-content ng-class="{expanded:isExpanded}" style="background: linear-gradient(to bottom, #e6b400, rgba(230, 180, 0, 0.8));">
+    <div class="content has-header">
+      <div class="list animate-fade-slide-in-right" style="padding-top:20px">
+        <a ng-repeat="node in nodes.data[nodes.currentIndex]" ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px;">
+          <img src="{{node.icon}}">
+          <h2>{{node.data.properties.name}}</h2>
+          <p>{{node.data.properties.description}}</p>
+          <i class="icon ion-star muted"><span ng-click= "favoritesSwitch($index, node.data.properties.id);$event.stopPropagation()" ng-style="{'background-image':'url('+destinationFavorite+')'}" style="position: absolute; left:-2px; top: 19px;"></span></i>
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
