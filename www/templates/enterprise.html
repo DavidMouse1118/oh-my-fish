@@ -14,8 +14,19 @@
   </ion-header-bar>
 
   <ion-content ng-class="{expanded:isExpanded}">
-    <div class="content has-header">
       <div class="list animate-fade-slide-in-right" style="padding-top:20px">
+        <a ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px;">
+          <img src="img/log_icon.png">
+          <h2>34.76N,45.78W</h2>
+          <p>{{node.description}}</p>
+          <i class="icon ion-chevron-right muted"><img src="img/icons/circle_arrow_right.svg" style="position: absolute; left:-2px; top: 20px"></i>
+        </a>
+        <a ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px;">
+          <img src="{{node.icon}}">
+          <h2></h2>
+          <p>{{node.description}}</p>
+          <i class="icon ion-chevron-right muted"><img src="img/icons/circle_arrow_right.svg" style="position: absolute; left:-2px; top: 20px"></i>
+        </a>
         <a ng-repeat="node in nodes.data[nodes.currentIndex]" ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px;">
           <img src="{{node.icon}}">
           <h2>{{node.name}}</h2>
@@ -23,7 +34,6 @@
           <i class="icon ion-chevron-right muted"><img src="img/icons/circle_arrow_right.svg" style="position: absolute; left:-2px; top: 20px"></i>
         </a>
       </div>
-    </div>
   </ion-content>
 
 </ion-view>

@@ -1,20 +1,29 @@
-<ion-view view-title="Activity">
+<!--RECENTLY ACCESSED PAGE-->
+<ion-view view-title="Recently Accessed">
+  <ion-nav-buttons side="left" >
+    <a style="width: 100%;" href="#/app/landingpage"><button class="csui-home-button"></button></a>
+  </ion-nav-buttons>
+
     <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
-        <div class="item card-item">
-            <div ui-sref="app.gallery" class="card stable-bg ink ink-dark">
+        <!--TEMPLATE-->
+        <div ng-repeat="node in nodes.data" class="item card-item" >
+            <div class="card stable-bg ink ink-dark" ng-click="show()" style="background-color: #FFF">
                 <div class="item item-avatar item-text-wrap">
-                    <span class="avatar" style="background-image: url('img/jon-snow.jpg');"></span>
-                    <strong>Jon Snow</strong> knows nothing.
+                    <span class="avatar" style="background-image: url({{node.data.properties.icon}})"></span>
+                    <strong style="font-size: 17px">{{node.data.properties.name}}</strong>
+                        <br>Last Accessed: {{node.data.properties_user.access_date_last}}
                     <div class="card-footer text-right">
-                        <i class="icon ion-chatbubbles positive"></i> 6
-                        <i class="icon ion-heart assertive"></i> 23
-                        <div class="pull-left">
-                            <i class="icon ion-clock"></i> just now
-                        </div>
+                        <i class="icon ion-person" style="float:left;font-size: 15px; color: black">
+                            <Strong> {{node.data.properties.owner_name}}</Strong></i>
+                        <i class="icon ion-ios-box" style="position: relative;float: left;font-size: 15px; color: black">
+                            <Strong> {{node.data.properties.size_formatted}}</Strong></i>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- END TEMPLATE-->
+
+        <!--
         <div class="item card-item">
             <div ui-sref="app.gallery" class="card stable-bg ink ink-dark">
                 <div class="item item-avatar item-text-wrap">
@@ -50,6 +59,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </ion-content>
 </ion-view>

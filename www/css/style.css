@@ -6,6 +6,18 @@ h1 {
     font-size: 42px;
 }
 
+.scroll {
+    height: 100%;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.csui .list .item{
+  background: none;
+}
 
 /* Utilities
 ==================================*/
@@ -26,6 +38,10 @@ p {
 
 /* Menu
 ==================================*/
+
+button.button.action-sheet-option{
+  text-transform: none;
+}
 
 ion-header-bar.csui-enterprise div.buttons.buttons-left{
     width: 20%;
@@ -48,6 +64,19 @@ button.csui-home-button{
   background-color: #f8f8f8;
   border: none;
 }
+
+body .pane{
+  background:none;
+}
+
+.pane .menu{
+  background:none;
+}
+
+body .item{
+  background:none;
+}
+
 .menu .bar.bar-header.expanded {
     transition: all .5s ease-in-out;
 }
@@ -111,6 +140,7 @@ ion-header-bar.bar.bar-header.csui-enterprise{
 
 ion-content.csui.sidemenu ion-item a.item-content{
   color: white;
+  background-color: transparent;
 }
 
 /* Login
@@ -127,7 +157,8 @@ ion-content.csui.sidemenu ion-item a.item-content{
     display:none;
 }
 
-.cs-wrap{
+
+{
     background: linear-gradient(to bottom, #005077, #0094C6);
 }
 
@@ -141,12 +172,11 @@ ion-content.csui.sidemenu ion-item a.item-content{
 }
 .csui.button.button-full.button-assertive{
     border-color: white;
-    background-color: white;
     color: #00a4d8;
     border-radius: 25px;
     margin: 0 auto;
     text-transform: none;
-    width: 50%;
+    width: 100%;
 }
 
 .csui.button.button-full.button-assertive[disabled] {
@@ -156,7 +186,7 @@ ion-content.csui.sidemenu ion-item a.item-content{
 }
 
 .csui.button.button-full.button-assertive h4{
-    color: #00a4d8;
+    color: white;
 }
 
 .csui.button.button-full.button-assertive[disabled] h4{
@@ -179,11 +209,11 @@ ion-content.csui.sidemenu ion-item a.item-content{
     padding: 6px 12px;
     height: 44px;
     border-radius: 6px;
-    background-color: white;
-    border: 1px solid #ccc;
-    color: black;
+    background-color: transparent;
+    color: white;
     font-size: 1.2em;
     font-style: italic;
+    text-align: center;
 }
 
 .clear-icon {
@@ -215,7 +245,7 @@ ion-content.csui.sidemenu ion-item a.item-content{
 }
 
 .login-copyright{
-  font-size: 11px;
+  font-size: 16px;
   bottom: 10px;
   text-align: center;
   position: relative;
@@ -288,7 +318,8 @@ body > ion-nav-view > ion-side-menus > ion-side-menu-content > ion-nav-bar > div
     background-size: cover;
 }
 .scroll-content {
-    background: linear-gradient(to bottom, #005077, #0094C6);
+    background-image: url('/img/F-Login page.jpg');
+    /*background: linear-gradient(to bottom, #005077, #0094C6);*/
 }
 
 ion-side-menu-content > ion-nav-view:nth-child(3) > ion-view > ion-content > div.scroll > div > div > a {
@@ -318,4 +349,17 @@ i.ion-star span{
 .favoriteIcon{
   background-image: url('/img/icons/title-favourites.svg');
   background-repeat: no-repeat;
+}
+
+/* Popover
+==================================*/
+.popover {
+    position: absolute;
+    top: 25%;
+    left: 42%;
+    z-index: 10;
+    display: block;
+    margin-left: -110px;
+    height: 33%;
+    width: 100%;
 }
