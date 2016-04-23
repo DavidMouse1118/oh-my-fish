@@ -1,4 +1,4 @@
-<ion-view view-title="{{nodes.currentFolder[nodes.currentIndex]}}" style="font-size: 20px">
+<ion-view style="font-size: 20px">
   <ion-nav-buttons side="left" >
     <button class="button button-clear back-button header-item animate-fade-slide-in-right" ng-show="nodes.currentIndex > 0" style="border-color: #F8F8F" ng-click="goBack()">
       <i class="icon ion-ios-arrow-back" style="color: #20AFDC; font-size: 25px;"> </i>
@@ -9,22 +9,21 @@
   <ion-header-bar class="bar bar-subheader item-input-inset" style="min-height: 20px; padding-top: 60px; padding-bottom: 30px">
     <label class="item-input-wrapper search">
       <i class="icon ion-search placeholder-icon"></i>
-      <input placeholder="Search for a file..." ng-model="input" ng-keydown="$event.which === 13 && searchList(input)"  type="text">
+      <input placeholder="Search for an operation..." ng-model="input" ng-keydown="$event.which === 13 && searchList(input)"  type="text">
     </label>
   </ion-header-bar>
 
   <ion-content ng-class="{expanded:isExpanded}">
-      <div class="list animate-fade-slide-in-right" style="padding-top:20px">
-        <a ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px;">
-          <img src="img/log_icon.png">
-          <h2>34.76N,45.78W</h2>
-          <p>{{node.description}}</p>
+      <div class="list animate-fade-slide-in-right" style="padding-top:55px">
+        <a ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px; background-color: white;">
+          <h2>Location: 34.76N,45.78W</h2>
+          <p>Time: April 24th 12:09:22 EST</p>
           <i class="icon ion-chevron-right muted"><img src="img/icons/circle_arrow_right.svg" style="position: absolute; left:-2px; top: 20px"></i>
         </a>
-        <a ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px;">
-          <img src="{{node.icon}}">
-          <h2></h2>
-          <p>{{node.description}}</p>
+        <li class="divider" style="height: 5px"></li>
+        <a ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px;background-color: white">
+          <h2>Location: 46.33N, 43.43W</h2>
+          <p>Time: March 1st 23:11:00 PST</p>
           <i class="icon ion-chevron-right muted"><img src="img/icons/circle_arrow_right.svg" style="position: absolute; left:-2px; top: 20px"></i>
         </a>
         <a ng-repeat="node in nodes.data[nodes.currentIndex]" ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px;">
