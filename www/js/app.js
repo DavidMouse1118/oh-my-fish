@@ -121,6 +121,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
             }
         }
     })
+
+    .state('app.log_detail', {
+        url: '/operation_detail/:log_id',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/log_detail.html',
+                controller: 'DetailCtrl'
+            },
+            'fabContent': {
+                template: '<button id="fab-log_detail" class="button button-fab button-fab-top-right expanded button-energized-900 drop"><img src="img/icons/title-favourites.svg"></button>',
+                controller: function ($timeout) {
+                    $timeout(function () {
+                        document.getElementById('fab-log_detail').classList.toggle('on');
+                    }, 600);
+                }
+            }
+        }
+    })
     ;
 
     // if none of the above states are matched, use this as the fallback
