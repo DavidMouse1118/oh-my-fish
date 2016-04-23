@@ -26,12 +26,33 @@ p {
 
 /* Menu
 ==================================*/
+
+ion-header-bar.csui-enterprise div.buttons.buttons-left{
+    width: 20%;
+    height: 56%;
+    background-color: #f8f8f8;
+}
+
+ion-header-bar.csui-enterprise span.left-buttons{
+    width: 100%;
+    background-color: #f8f8f8;
+    padding-top: 9px;
+    padding-left: 18%;
+}
+
+button.csui-home-button{
+  background-image: url("/img/icons/home.svg");
+  background-size: 25px 25px;
+  width: 25px;
+  height: 25px;
+  background-color: #f8f8f8;
+  border: none;
+}
 .menu .bar.bar-header.expanded {
     transition: all .5s ease-in-out;
 }
 
 .menu-open .bar.bar-header.expanded {
-    background-color: #222;
     background-color: #f8f8f8;
     background: none;
 }
@@ -48,8 +69,9 @@ p {
 }
 
 .menu .avatar {
-    height: 88px;
-    width: 88px;
+    height: 58px;
+    width: 58px;
+    top: 44px;
 }
 
 .menu.menu-left * {
@@ -80,18 +102,11 @@ div.title.title-left.header-item{
 
 ion-header-bar.bar.bar-header.csui-enterprise{
   background-color: #f8f8f8;
-  background-image: url("/img/header_content_server.svg");
+  background-image: url("/img/icons/header_content_server.svg");
   background-repeat: no-repeat;
   background-size: 189px 70px;
   background-position: center -13px;
 
-}
-
-.csui-logo-image{
-  background-image: url("img/header_content_server.svg");
-  background-repeat: no-repeat;
-  height: 23px;
-  width: 352px;
 }
 
 ion-content.csui.sidemenu ion-item a.item-content{
@@ -112,7 +127,8 @@ ion-content.csui.sidemenu ion-item a.item-content{
     display:none;
 }
 
-.cs-wrap{
+
+{
     background: linear-gradient(to bottom, #005077, #0094C6);
 }
 
@@ -126,12 +142,11 @@ ion-content.csui.sidemenu ion-item a.item-content{
 }
 .csui.button.button-full.button-assertive{
     border-color: white;
-    background-color: white;
     color: #00a4d8;
     border-radius: 25px;
     margin: 0 auto;
     text-transform: none;
-    width: 50%;
+    width: 100%;
 }
 
 .csui.button.button-full.button-assertive[disabled] {
@@ -141,15 +156,9 @@ ion-content.csui.sidemenu ion-item a.item-content{
 }
 
 .csui.button.button-full.button-assertive h4{
-    color: #00a4d8;
+    color: white;
 }
 
-.csui.list label.item.item-input{
-    margin: 0 auto;
-    width: 83%;
-    min-height: 62px;
-    padding: 21px 0 0;
-  }
 .csui.button.button-full.button-assertive[disabled] h4{
   background: none;
   color: white;
@@ -170,11 +179,11 @@ ion-content.csui.sidemenu ion-item a.item-content{
     padding: 6px 12px;
     height: 44px;
     border-radius: 6px;
-    background-color: white;
-    border: 1px solid #ccc;
-    color: black;
+    background-color: transparent;
+    color: white;
     font-size: 1.2em;
     font-style: italic;
+    text-align: center;
 }
 
 .clear-icon {
@@ -206,7 +215,7 @@ ion-content.csui.sidemenu ion-item a.item-content{
 }
 
 .login-copyright{
-  font-size: 11px;
+  font-size: 16px;
   bottom: 10px;
   text-align: center;
   position: relative;
@@ -245,16 +254,18 @@ ion-content.csui.sidemenu ion-item a.item-content{
   font-size: 46px;
   color: white;
 }
-.icon.ion-chevron-right {
+
+.icon.ion-chevron-right{
   color: #0072aa;
 }
-.icon.ion-arrow-right-b {
+
+.icon.ion-arrow-right-b{
   background: url('img/icons/circle_add.svg');
   content: url('img/icons/circle_add.svg') no-repeat;
   color: #0072aa;
 }
 
-.icon.ion-search.placeholder-icon {
+.icon.ion-search.placeholder-icon{
   color: #E4E4E4;
 }
 
@@ -263,10 +274,9 @@ ion-content.csui.sidemenu ion-item a.item-content{
   background-color: #FFBF00;
 }
 
-/*
-* ENTERPRISE PAGE
-*/
 
+/* Enterprise Workspace
+==================================*/
 .node {
   background-color:#FFFFFF;
   border-style:groove;
@@ -278,7 +288,8 @@ body > ion-nav-view > ion-side-menus > ion-side-menu-content > ion-nav-bar > div
     background-size: cover;
 }
 .scroll-content {
-    background: linear-gradient(to bottom, #005077, #0094C6);
+    background-image: url('/img/F-Login page.jpg');
+    /*background: linear-gradient(to bottom, #005077, #0094C6);*/
 }
 
 ion-side-menu-content > ion-nav-view:nth-child(3) > ion-view > ion-content > div.scroll > div > div > a {
@@ -292,6 +303,20 @@ ion-side-menu-content > ion-nav-view:nth-child(3) > ion-view > ion-content > div
     background-clip: padding-box;
 }
 
-.item-input-wrapper.search {
+.item-input-wrapper.search{
   background-color: white;
+}
+
+/* Favorites
+==================================*/
+
+i.ion-star span{
+  width: 100%;
+  height: 46%;
+  background-repeat: no-repeat;
+}
+
+.favoriteIcon{
+  background-image: url('/img/icons/title-favourites.svg');
+  background-repeat: no-repeat;
 }

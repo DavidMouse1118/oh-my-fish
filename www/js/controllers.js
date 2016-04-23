@@ -317,62 +317,68 @@ function createArray(len, itm) {
 })
 
 //Controller for the Recently Accessed Page
-.controller('ActivityCtrl', function($scope, $stateParams, $timeout, $ionicActionSheet, NodeService, $ionicPopup, ionicMaterialMotion, ionicMaterialInk) {
+.controller('ActivityCtrl', function($scope, $ionicPopover, $stateParams, $timeout, $ionicActionSheet, NodeService, $ionicPopup, ionicMaterialMotion, ionicMaterialInk) {
   $scope.$parent.showHeader();
   $scope.$parent.clearFabs();
   $scope.isExpanded = true;
   $scope.$parent.setExpanded(true);
   $scope.$parent.setHeaderFab('right');
 
-  $timeout(function() {
-    ionicMaterialMotion.fadeSlideIn({
-      selector: '.animate-fade-slide-in .item'
-    });
-  }, 200);
-  //Reload the workspace page
-  $scope.reloadingTheEnterprise = function(id){
-    $timeout(function() {
-      NodeService.getSubNodesById(id, $scope.nodes);
-    }, 300);
-    // Delay expansion
-    $timeout(function() {
-      ionicMaterialMotion.fadeSlideInRight();
-      console.log("reloading the enterprisePage");
-      for (var index in $scope.nodes.data[$scope.nodes.currentIndex]) {
-        NodeService.parseNode($scope.nodes.data[$scope.nodes.currentIndex][index]);
-      }
-    }, 2000);
-  };
+  // .fromTemplate() method
+  var template = '<ion-popover-view><ion-header-bar> <h1 class="title">My Popover Title</h1> </ion-header-bar> <ion-content> Hello! </ion-content></ion-popover-view>';
 
-  //Functionality for the <Delete> button after user presses it in the action menu of a node
-  $scope.showDeleteConfirm = function(name, id, parentId) {
-    console.log(parentId);
-    var confirmPopup = $ionicPopup.confirm({
-     title: 'Delete',
-     template: 'Do you really want to delete ' + name + '?'
-   });
+  $scope.popover = $ionicPopover.fromTemplate(template, {
+    scope: $scope
+  });
 
-    confirmPopup.then(function(res) {
-     if(res) {
-       NodeService.deleteNode(id);
-       $scope.reloadingTheEnterprise(parentId);
-     } else {
-       console.log('cancel deleting');
-     }
-   });
+  // .fromTemplateUrl() method
+  $ionicPopover.fromTemplateUrl('my-popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+
+
+  $scope.openPopover = function($event) {
+    $scope.popover.show($event);
   };
+  $scope.closePopover = function() {
+    $scope.popover.hide();
+  };
+  //Cleanup the popover when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.popover.remove();
+  });
+  // Execute action on hide popover
+  $scope.$on('popover.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove popover
+  $scope.$on('popover.removed', function() {
+    // Execute action
+  });
+})
+
+
+//Controller for the Favourites Page
+.controller('FavoritesCtrl', function($scope, $ionicPopover, $ionicLoading, $compile, $stateParams, $timeout, $state, $ionicActionSheet, ionicMaterialInk, ionicMaterialMotion, NodeService) {
+  $scope.$parent.showHeader();
+  $scope.$parent.clearFabs();
+  $scope.isExpanded = true;
+  $scope.$parent.setExpanded(true);
+  $scope.$parent.setHeaderFab(false);
+
+
   // Action Menu for a node and its options
   $scope.show = function() {
     // Show the action sheet
     var that = this;
     var hideSheet = $ionicActionSheet.show({
       buttons: [
-      { text: 'View' },
-      { text: 'Add To Favourites' },
-      { text: 'Download'}
+      { text: 'View My Nearby Operations' },
+      { text: 'View All Nearby Operations' }
       ],
-      destructiveText: 'Delete',
-      titleText: 'ACTIONS',
+      titleText: 'About this location',
       cancelText: 'Cancel',
       cancel: function() {
         // add cancel code..
@@ -415,101 +421,122 @@ function createArray(len, itm) {
 
     });
 };
-  // Activate ink for controller
-  ionicMaterialInk.displayEffect();
-})
+
+                 $scope.navTitle = 'Google Map';
+                $scope.$on('$ionicView.afterEnter', function(){
+              if ( angular.isDefined( $scope.map ) ) {
+                  google.maps.event.trigger($scope.map, 'resize');
+              }
+            });
 
 
-//Controller for the Favourites Page
-.controller('FavoritesCtrl', function($scope, $stateParams, $timeout, $state, $ionicActionSheet, ionicMaterialInk, ionicMaterialMotion, NodeService) {
-  $scope.$parent.showHeader();
-  $scope.$parent.clearFabs();
-  $scope.isExpanded = true;
-  $scope.$parent.setExpanded(true);
-  $scope.$parent.setHeaderFab(false);
+            function initialize() {
+                  //var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
+                  var myLatlng = new google.maps.LatLng(43.6427197,-79.38397530000002);
+                  var myLatlng2 = new google.maps.LatLng(38.9072,-77.0369);
+                  console.log(myLatlng);
+                  var mapOptions = {
+                    center: myLatlng,
+                    zoom: 5,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                  };
+                  var map = new google.maps.Map(document.getElementById("map"),
+                      mapOptions);
+
+                  //Marker + infowindow + angularjs compiled ng-click
+                  var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
+                  var compiled = $compile(contentString)($scope);
+
+                  var infowindow = new google.maps.InfoWindow({
+                    content: compiled[0]
+                  });
+
+                  var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: 'Pune(India)'
+                  });
+
+                  var marker2 = new google.maps.Marker({
+                    position: myLatlng2,
+                    map: map,
+                    title: 'Pune(India)'
+                  });
+
+                  google.maps.event.addListener(marker, 'click', function() {
+                    //infowindow.open(map,marker);
+                    //$scope.show();
+                    $scope.openPopover();
+                  });
+
+                  $scope.map = map;
+                }
+                initialize();
+
+                $scope.centerOnMe = function() {
+                  if(!$scope.map) {
+                    return;
+                  }
+
+                  $scope.loading = $ionicLoading.show({
+                    content: 'Getting current location...',
+                    showBackdrop: false
+                  });
+
+                  navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    console.log(pos);
+
+                    var mapOptions = {
+                      center: pos,
+                      zoom: 16,
+                      mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    var map = new google.maps.Map(document.getElementById("map"),
+                        mapOptions);
+
+                      var marker = new google.maps.Marker({
+                          position: pos,
+                          map: map,
+                          title: 'Pune(India)'
+                        });
+                    $scope.map.setCenter(pos);
+
+                    var marker = new google.maps.Marker({
+                      position: pos,
+                      map: map,
+                      title: 'jhfsjfh'
+                    });
+                  //  console.log(pos.);
+                    $scope.loading.hide();
+                  }, function(error) {
+                    alert('Unable to get location: ' + error.message);
+                  });
+                };
+
+                $scope.clickTest = function() {
+                  alert('Example of infowindow with ng-click')
+                };
+
+                var template = '<ion-popover-view><ion-header-bar> <h1 class="title">My Popover Title</h1> </ion-header-bar> <ion-content> Hello! </ion-content></ion-popover-view>';
+
+ $scope.popover = $ionicPopover.fromTemplate(template, {
+   scope: $scope
+ });
+
+ // .fromTemplateUrl() method
+ $ionicPopover.fromTemplateUrl('my-popover.html', {
+   scope: $scope
+ }).then(function(popover) {
+   $scope.popover = popover;
+ });
 
 
-  $scope.show = function() {
-    // Show the action sheet
-    var that = this;
-    var hideSheet = $ionicActionSheet.show({
-      buttons: [
-        { text: 'View' },
-        { text: 'Download'}
-      ],
-      titleText: 'ACTIONS',
-      cancelText: 'Cancel',
-      cancel: function() {
-        // add cancel code..
-        hideSheet();
-      },
-
-      buttonClicked: function(index, button) {
-        //If "View" is clicked
-        if (index === 0) {
-            $state.go('app.enterprise',{nodeId: that.node.data.properties.id});
-        }
-        return true;
-      }
-    });
-
-    // GO TO SPECIFIC NODE IN ENTERPRISE PAGE
-    //$state.go(enterprisepage + "/" + nodeId)
-
-  };
-
-  $scope.nodes = {data: createArray(25, null),currentIndex: 0, currentFolder: ""};
-
-  $scope.destinationFavorite = '/img/icons/switch_favourite_on.svg';
-  $scope.favoritesSwitch = function(index, id){
-    console.log(index);
-    var favoriteStar = angular.element(document.querySelectorAll('div.list span')[index]);
-    if(favoriteStar.css('background-image') == 'url("/img/icons/switch_favourite_on.svg")'){
-      NodeService.deleteFavoriteNodes(id);
-      favoriteStar.css('background-image','url("/img/icons/switch_favourite.svg")');
-      console.log("Remove from favorite");
-    }
-    else{
-      NodeService.addFavoriteNodes(id);
-      favoriteStar.css('background-image','url("/img/icons/switch_favourite_on.svg")');
-      console.log("Add to favorite");
-    }
-  }
-
-  NodeService.getFavoriteNodes($scope.nodes);
-  delayExpansion();
-  $timeout(function() {
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
-  }, 300);
-
-  function delayExpansion(){
-    $timeout(function() {
-      ionicMaterialMotion.fadeSlideInRight();
-      for (var index in $scope.nodes.data[$scope.nodes.currentIndex]) {
-        NodeService.parseFavoriteNode($scope.nodes.data[$scope.nodes.currentIndex][index]);
-      }
-    }, 2000);
-  }
-
-  function createArray(len, itm) {
-    var arr1 = [itm],
-    arr2 = [];
-    while (len > 0) {
-      if (len & 1) arr2 = arr2.concat(arr1);
-      arr1 = arr1.concat(arr1);
-      len >>>= 1;
-    }
-    return arr2;
-  }
-  // Activate ink for controller
-  ionicMaterialInk.displayEffect();
-
-  ionicMaterialMotion.pushDown({
-    selector: '.push-down'
-  });
-  ionicMaterialMotion.fadeSlideInRight({
-    selector: '.animate-fade-slide-in .item'
-  });
+ $scope.openPopover = function() {
+   $scope.popover.show();
+ };
+ $scope.closePopover = function() {
+   $scope.popover.hide();
+ };
 
 });

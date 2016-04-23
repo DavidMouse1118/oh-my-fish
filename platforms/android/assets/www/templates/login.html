@@ -3,7 +3,7 @@
         <div class="hero no-header flat">
             <div class="content">
                 <div class="">
-                  <img src = "img/signin-cs.svg" class="ot-logo">
+                  <img src = "img/icons/signin-cs.svg" class="ot-logo">
                 </div>
             </div>
         </div>
@@ -11,23 +11,23 @@
           <div class="login-error">
           </div>
           <form name="loginAuthForm">
-            <div class="item item-input">
+            <div class="item item-input item-floating-label">
               <input ng-model="username" type="text" name="Username" placeholder="User name" ng-focus="errorgone()" autocomplete="off">
               <span ng-show="username != ''" id="otds_username_clearer" class="clear-icon" ng-click="username = ''"></span>
             </div>
-            <div class="item item-input">
+            <div class="item item-input item-floating-label">
               <input ng-model="password" type="password" name="Password" placeholder="Password" ng-focus="errorgone()" autocomplete="off">
               <span ng-show="password != ''" id="otds_password_clearer" class="clear-icon" ng-click="password = ''"></span>
             </div>
             <div class="csui padding">
-              <button ng-click="authenticate(username, password);" class="csui button button-full button-assertive ink" ng-disabled="username == ''|| password == ''"><h4>Sign in</h4></button>
+              <a href="#/app/landingpage" class="csui button button-full button-assertive ink" ng-disabled="username == ''|| password == ''"><h4>Sign in</h4></a>
             </div>
           </form>
         </div>
         <div class="footer">
           <span class="login-copyright">
             <br>
-            Copyright © 2016 Open Text SA and/or Open Text ULC.
+            <span style="color: #b2b2b2">Don't have an account?</span> &nbsp;Sign up
           </span>
         </div>
     </ion-content>

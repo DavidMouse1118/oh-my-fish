@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'ionMdInput', 'ionic-table'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ionic-material', 'ionMdInput', 'ionic-table'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -45,7 +45,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
                 controller: 'ActivityCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-paper-airplane"></i></button>',
+                template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-refresh"></i></button>',
                 controller: function ($timeout) {
                     $timeout(function () {
                         document.getElementById('fab-activity').classList.toggle('on');
@@ -56,7 +56,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
     })
 
     .state('app.enterprise', {
-        url: '/enterprise',
+        url: '/enterprise/:nodeId',
         views: {
             'menuContent': {
                 templateUrl: 'templates/enterprise.html',
@@ -73,18 +73,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         }
     })
 
-    .state('app.gallery', {
-        url: '/gallery',
+    .state('app.favorites', {
+        url: '/favorites',
         views: {
             'menuContent': {
-                templateUrl: 'templates/gallery.html',
-                controller: 'GalleryCtrl'
+                templateUrl: 'templates/favorites.html',
+                controller: 'FavoritesCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-gallery" class="button button-fab button-fab-top-right expanded button-energized-900 drop"><i class="icon ion-heart"></i></button>',
+                template: '<button id="fab-favorites" class="button button-fab button-fab-top-right expanded button-energized-900 drop"><img src="img/icons/title-favourites.svg"></button>',
                 controller: function ($timeout) {
                     $timeout(function () {
-                        document.getElementById('fab-gallery').classList.toggle('on');
+                        document.getElementById('fab-favorites').classList.toggle('on');
                     }, 600);
                 }
             }
@@ -112,7 +112,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
                 controller: 'LandingPageCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-landingpage" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-plus"></i></button>',
+                template: '<button id="fab-landingpage" class="button button-fab button-fab-bottom-right button-energized-900"><img src="img/icons/circle_add_2.svg"></button>',
                 controller: function ($timeout) {
                     /*$timeout(function () {
                         document.getElementById('fab-profile').classList.toggle('on');

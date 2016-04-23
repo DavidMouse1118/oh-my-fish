@@ -11,11 +11,11 @@
           <div class="login-error">
           </div>
           <form name="loginAuthForm">
-            <div class="item item-input">
+            <div class="item item-input item-floating-label">
               <input ng-model="username" type="text" name="Username" placeholder="User name" ng-focus="errorgone()" autocomplete="off">
               <span ng-show="username != ''" id="otds_username_clearer" class="clear-icon" ng-click="username = ''"></span>
             </div>
-            <div class="item item-input">
+            <div class="item item-input item-floating-label">
               <input ng-model="password" type="password" name="Password" placeholder="Password" ng-focus="errorgone()" autocomplete="off">
               <span ng-show="password != ''" id="otds_password_clearer" class="clear-icon" ng-click="password = ''"></span>
             </div>
@@ -27,7 +27,7 @@
         <div class="footer">
           <span class="login-copyright">
             <br>
-            Copyright © 2016 Open Text SA and/or Open Text ULC.
+            <span style="color: #b2b2b2">Don't have an account?</span> &nbsp;Sign up
           </span>
         </div>
     </ion-content>
