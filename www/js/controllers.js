@@ -134,7 +134,7 @@ angular.module('starter.controllers', [])
 .controller('EnterpriseCtrl', function($scope, $stateParams, $state, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicActionSheet, $ionicPopup, NodeService) {
   // Set Header
   console.log($stateParams);
-  $scope.$parent.showHeader();$
+  $scope.$parent.showHeader();
   $scope.$parent.clearFabs();
   $scope.$parent.setHeaderFab('left');
   $scope.nodes = {data: createArray(25, null), currentIndex: 0};
