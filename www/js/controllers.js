@@ -164,16 +164,6 @@ angular.module('starter.controllers', [])
     });
 
     confirmPopup.then(function(res) {
-<<<<<<< HEAD
-      if(res) {
-        NodeService.deleteNode(id);
-        $scope.reloadingTheEnterprise(parentId);
-      } else {
-        console.log('cancel deleting');
-      }
-    });
-  };
-=======
      if(res) {
        NodeService.deleteNode(id);
        $scope.reloadingTheEnterprise(parentId);
@@ -184,7 +174,6 @@ angular.module('starter.controllers', [])
  };
   $scope.testOperations =  {};
 
->>>>>>> master
   // Triggered on a button click, or some other target
   // Action Menu for a node and its options
   $scope.show = function() {
