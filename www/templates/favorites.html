@@ -2,6 +2,7 @@
   <ion-content>
                       <div id="map" data-tap-disabled="true"></div>
               </ion-content>
+              <marker position="{{latitude}},{{longitude}}" draggable="true" on-mouseup="markerMove()" visible="true"></marker>
                <ion-footer-bar class="bar-stable">
                   <a ng-click="centerOnMe()" class="button button-icon icon ion-navigate">Find Me</a>
                </ion-footer-bar>
