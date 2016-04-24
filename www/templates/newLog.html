@@ -1,0 +1,57 @@
+<ion-view view-title='Start a new operation'>
+  <ion-nav-buttons side="left" >
+    <button class="button button-clear back-button header-item animate-fade-slide-in-right" style="border-color: #F8F8F" ng-click="goBack()">
+      <i class="icon ion-ios-arrow-back" style="color: #20AFDC; font-size: 25px;"> </i>
+    </button>
+  </ion-nav-buttons>
+  <ion-content >
+    <div ng-show = "up" class="list one" style="padding-top:30px">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">vessal name</span>
+        <input  ng-model = "vessalName" type="text" placeholder="John">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label"></span>
+        <input type="text" placeholder={{vessalName}}>
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Email</span>
+        <input type="text" placeholder="john@suhr.com">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">First Name</span>
+        <input type="text" placeholder="John">
+      </label><label class="item item-input item-stacked-label">
+        <span class="input-label">First Name</span>
+        <input type="text" placeholder="John">
+        <div class="csui padding">
+            <button ng-click = "goNext();" class="csui button button-full button-assertive ink" ng-disabled="username == ''|| password == ''"><h4>Next</h4></button>
+          </div>
+      </label>
+      </div>
+    <div ng-show = "up2" class="list two" style="padding-top:30px">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">vessal namezchjvbxzjc</span>
+        <input  ng-model = "vessalName" type="text" placeholder="Jxzcvj,,,,, nmn,ohn">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label"></span>
+        <input type="text" placeholder={{vessalName}}>
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Email</span>
+        <input type="text" placeholder="john@suhr.com">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">First Name</span>
+        <input type="text" placeholder="John">
+      </label><label class="item item-input item-stacked-label">
+        <span class="input-label">First Name</span>
+        <input type="text" placeholder="John">
+        <div class="csui padding">
+          <button ng-click = "UploadingALog(vessalName)" class="csui button button-full button-assertive ink" ng-disabled="username == ''|| password == ''"><h4></h4></button>
+        </div>
+      </label>
+    </div>
+  </ion-content>
+</ion-view>
