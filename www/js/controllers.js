@@ -164,6 +164,7 @@ angular.module('starter.controllers', [])
     });
 
     confirmPopup.then(function(res) {
+<<<<<<< HEAD
       if(res) {
         NodeService.deleteNode(id);
         $scope.reloadingTheEnterprise(parentId);
@@ -172,6 +173,18 @@ angular.module('starter.controllers', [])
       }
     });
   };
+=======
+     if(res) {
+       NodeService.deleteNode(id);
+       $scope.reloadingTheEnterprise(parentId);
+     } else {
+       console.log('cancel deleting');
+     }
+   });
+ };
+  $scope.testOperations =  {};
+
+>>>>>>> master
   // Triggered on a button click, or some other target
   // Action Menu for a node and its options
   $scope.show = function() {
@@ -190,34 +203,17 @@ angular.module('starter.controllers', [])
         hideSheet();
       },
 
-      //Functionality defined for clicking any of the 3 buttons: <View> , <Add to Favourites>, <Download>
-      //***IN PROGRESS***//
-      buttonClicked: function(index, button) {
+
+    //Functionality defined for clicking any of the 2 buttons: <View>, <Download>
+    //***IN PROGRESS***//
+    buttonClicked: function(index, button) {
         //If <View> is clicked
         if (index === 0) {
-          $scope.nodes.currentIndex++;
-          //IF FOLDER IS ALREADY STORED IN NODES, USE THAT INSTEAD OF NODE SERVICE
-          console.log($scope.nodes.currentIndex);
-          console.log(that.node.name);
-          console.log($scope.nodes.data[$scope.nodes.currentIndex]);
-          if ($scope.nodes.currentIndex > 1 && $scope.nodes.data[$scope.nodes.currentIndex] != null && that.node.name === $scope.nodes.data[$scope.nodes.currentIndex].name) {
-            $timeout(function () {
-              ionicMaterialMotion.fadeSlideInRight();
-            }, 250);
-          } else {
-            $scope.nodes.currentFolder[$scope.nodes.currentIndex] = that.node.name;
-            NodeService.getSubNodesById(that.node.id, $scope.nodes);
-            //$scope.nodes.currentFolder[$scope.nodes.currentIndex] = that.node.name;
-            delayExpansion();
-          }
+          //$scope.nodes.currentIndex++;
+          //switch to detail View
+          $state.go('app.log_detail', {'log_id': 1});
         }
-        else if(index === 1){
-          NodeService.addFavoriteNodes(that.node.id);
-        }
-        else if (index === 2){//////////////////////////////////////////////////////////Get Recently Accessed. This is wrong here and needs to become the
-          ///////////////////////////////////////////////////////////////////////////// "Download Node" functionality when its implemented
-          NodeService.getRecentlyAccessed();
-        } else {
+        else {
           NodeService.getSubNodesById(that.node.id, $scope.nodes);
           delayExpansion();
         }
@@ -304,6 +300,23 @@ angular.module('starter.controllers', [])
   $scope.authenticate = AuthenticationService.login;
 })
 
+/*
+ * Controller for operation detail page
+ */
+.controller('DetailCtrl', function ($scope, $stateParams, $timeout, $ionicHistory, ionicMaterialMotion, ionicMaterialInk) {
+  // Set Header
+  $scope.$parent.showHeader();
+  $scope.$parent.clearFabs();
+  $scope.isExpanded = true;
+  $scope.$parent.setExpanded(true);
+  $scope.$parent.setHeaderFab(false);
+  $scope.goBack = function () {
+    $ionicHistory.goBack();
+  }
+   // console.log($statePar);
+   ionicMaterialMotion.blinds();
+   ionicMaterialInk.displayEffect();
+})
 //Controller for the Landing Page
 //Basic setup for what is shown on the page
 .controller('LandingPageCtrl', function($scope, $rootScope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
