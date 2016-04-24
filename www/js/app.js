@@ -45,7 +45,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
                 controller: 'ActivityCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-refresh"></i></button>',
+                //template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-refresh"></i></button>',
                 controller: function ($timeout) {
                     $timeout(function () {
                         document.getElementById('fab-activity').classList.toggle('on');
@@ -63,7 +63,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
                 controller: 'EnterpriseCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-enterprise-add" ng-click="showConfirm();" style="background-color:#F7F7F7; color:#E08D17"class="button button-fab button-fab-top-right expanded button-calm-900 spin"><img src="img/icons/circle_add_2.svg"></button>',
+                //template: '<button id="fab-enterprise-add" ng-click="showConfirm();" style="background-color:#F7F7F7; color:#E08D17"class="button button-fab button-fab-top-right expanded button-calm-900 spin"><img src="img/icons/circle_add_2.svg"></button>',
                 controller: function ($timeout) {
                     $timeout(function () {
                         document.getElementById('fab-enterprise-add').classList.toggle('on');
@@ -81,7 +81,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
                 controller: 'FavoritesCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-favorites" class="button button-fab button-fab-top-right expanded button-energized-900 drop"><img src="img/icons/title-favourites.svg"></button>',
+                //template: '<button id="fab-favorites" class="button button-fab button-fab-top-right expanded button-energized-900 drop"><img src="img/icons/title-favourites.svg"></button>',
                 controller: function ($timeout) {
                     $timeout(function () {
                         document.getElementById('fab-favorites').classList.toggle('on');
@@ -112,7 +112,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
                 controller: 'LandingPageCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-landingpage" class="button button-fab button-fab-bottom-right button-energized-900"><img src="img/icons/circle_add_2.svg"></button>',
+                //template: '<button id="fab-landingpage" class="button button-fab button-fab-bottom-right button-energized-900"><img src="img/icons/circle_add_2.svg"></button>',
                 controller: function ($timeout) {
                     /*$timeout(function () {
                         document.getElementById('fab-profile').classList.toggle('on');
@@ -130,7 +130,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
                 controller: 'DetailCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-log_detail" class="button button-fab button-fab-top-right expanded button-energized-900 drop"><img src="img/icons/title-favourites.svg"></button>',
+                //template: '<button id="fab-log_detail" class="button button-fab button-fab-top-right expanded button-energized-900 drop"><img src="img/icons/title-favourites.svg"></button>',
                 controller: function ($timeout) {
                     $timeout(function () {
                         document.getElementById('fab-log_detail').classList.toggle('on');
@@ -148,7 +148,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
               controller: 'NewlogCtrl'
           },
           'fabContent': {
-              template: '<button id="fab-log_detail" class="button button-fab button-fab-top-right expanded button-energized-900 drop"><img src="img/icons/title-favourites.svg"></button>',
+              //template: '<button id="fab-log_detail" class="button button-fab button-fab-top-right expanded button-energized-900 drop"><img src="img/icons/title-favourites.svg"></button>',
               controller: function ($timeout) {
                   $timeout(function () {
                       document.getElementById('fab-log_detail').classList.toggle('on');
