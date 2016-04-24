@@ -359,7 +359,32 @@ function createArray(len, itm) {
   });
 })
 
+.controller('NewlogCtrl', function($scope, $ionicPopover, $ionicLoading, $compile, $stateParams, $timeout, $state, $ionicActionSheet, ionicMaterialInk, ionicMaterialMotion, NodeService) {
+  $scope.$parent.showHeader();
+  $scope.$parent.clearFabs();
+  $scope.isExpanded = true;
+  $scope.$parent.setExpanded(true);
+  $scope.$parent.setHeaderFab(false);
 
+  $scope.up = 'true';
+  $scope.up2 = 'false';
+  var list1 = angular.element(document.querySelector('.list.one'));
+  var list2 = angular.element(document.querySelector('.list.two'));
+  list2.addClass('hide');
+
+  $scope.goNext = function(){
+    var list1 = angular.element(document.querySelector('.list.one'));
+
+    list1.addClass('hide');
+
+    var list2 = angular.element(document.querySelector('.list.two'));
+      list2.removeClass('hide');
+
+  }
+
+  ionicMaterialMotion.blinds();
+  ionicMaterialInk.displayEffect();
+})
 //Controller for the Favourites Page
 .controller('FavoritesCtrl', function($scope, $ionicPopover, $ionicLoading, $compile, $stateParams, $timeout, $state, $ionicActionSheet, ionicMaterialInk, ionicMaterialMotion, NodeService) {
   $scope.$parent.showHeader();
@@ -367,6 +392,10 @@ function createArray(len, itm) {
   $scope.isExpanded = true;
   $scope.$parent.setExpanded(true);
   $scope.$parent.setHeaderFab(false);
+
+
+
+
 
 
   // Action Menu for a node and its options
