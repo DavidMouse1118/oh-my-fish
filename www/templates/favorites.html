@@ -2,6 +2,7 @@
   <ion-content>
                       <div id="map" data-tap-disabled="true"></div>
               </ion-content>
+              <marker position="{{latitude}},{{longitude}}" draggable="true" on-mouseup="markerMove()" visible="true"></marker>
                <ion-footer-bar class="bar-stable">
                   <a ng-click="centerOnMe()" class="button button-icon icon ion-navigate">Find Me</a>
                </ion-footer-bar>
@@ -16,7 +17,7 @@
         <div class="item card-item">
             <div class="card stable-bg ink ink-dark" style="background-color: #FFF">
                 <div class="item item-avatar item-text-wrap">
-                    <span class="avatar" style="background-image: url(img/fish-icon.jpg); background-size:40px 40px; background-repeat: no-repeat"></span>
+                    <span class="avatar" style="background-image: url(img/header-icon.png); background-size:40px 40px; background-repeat: no-repeat"></span>
                     <strong style="font-size: 17px">Salmon：75%{{node.data.assignments.name}}</strong>
                     <p style="padding-top:4px">Assigned By: lpl {{node.data.assignments.owner_name}}</p>
                     <p>Workflow:xkjvgdkjshfv {{node.data.assignments.workflow_name}}</p>

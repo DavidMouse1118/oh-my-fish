@@ -123,6 +123,7 @@ body .item{
 
 div.title.title-left.header-item{
   color: #00a4d8;
+  font-style: italic;
 }
 
 .icon.ion-android-arrow-back{
@@ -131,10 +132,10 @@ div.title.title-left.header-item{
 
 ion-header-bar.bar.bar-header.csui-enterprise{
   background-color: #f8f8f8;
-  background-image: url("/img/icons/header_content_server.svg");
+  background-image: url("/img/header.png");
   background-repeat: no-repeat;
-  background-size: 189px 70px;
-  background-position: center -13px;
+  background-size: 147px 39px;
+  background-position: center 2px;
 
 }
 
@@ -167,7 +168,7 @@ ion-content.csui.sidemenu ion-item a.item-content{
 }
 
 .hero.no-header {
-    height: 36%;
+    height: 52%;
 }
 
 .ot-logo{
