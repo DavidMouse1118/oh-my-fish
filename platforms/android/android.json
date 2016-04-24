@@ -1,0 +1,61 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.Geolocation\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.sample374926"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.sample374926"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
+            "id": "cordova-plugin-geolocation.geolocation",
+            "clobbers": [
+                "navigator.geolocation"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+            "id": "cordova-plugin-geolocation.PositionError",
+            "runs": true
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-compat": "1.0.0",
+        "cordova-plugin-geolocation": "2.2.0"
+    }
+}
