@@ -4,7 +4,7 @@
 angular.module('starter.controllers', [])
 //Controller for the whole app.
 // This is where you can define methods or actions that stay constant throughout the app
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout, $ionicPopup, NodeService) {
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $ionicPopover, $timeout, $ionicPopup, NodeService) {
   // Form data for the login modal
   $scope.loginData = {};
   $scope.isExpanded = false;
@@ -136,6 +136,8 @@ angular.module('starter.controllers', [])
     console.log(input);
     NodeService.searchCall(input);
   }
+  console.log($rootScope.name);
+  $scope.username = '';
 
 })
 
@@ -149,7 +151,6 @@ angular.module('starter.controllers', [])
   $scope.$parent.clearFabs();
   $scope.$parent.setHeaderFab('left');
   $scope.nodes = {data: createArray(25, null), currentIndex: 0};
-  $scope.nodes.currentFolder = [];
 
   //Reload the workspace page
   $scope.reloadingTheEnterprise = function(id){
@@ -321,64 +322,6 @@ angular.module('starter.controllers', [])
    ionicMaterialMotion.blinds();
    ionicMaterialInk.displayEffect();
 })
-//Controller for the Landing Page
-//Basic setup for what is shown on the page
-.controller('LandingPageCtrl', function($scope, $rootScope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-  // Set Header
-  $scope.$parent.showHeader();
-  $scope.$parent.clearFabs();
-  $scope.isExpanded = true;
-  $scope.$parent.setExpanded(true);
-  $scope.$parent.setHeaderFab(false);
-  $scope.name = $rootScope.name;
-  // Set Ink
-  ionicMaterialMotion.blinds();
-  ionicMaterialInk.displayEffect();
-
-})
-
-//Controller for the Recently Accessed Page
-.controller('ActivityCtrl', function($scope, $ionicPopover, $stateParams, $timeout, $ionicActionSheet, NodeService, $ionicPopup, ionicMaterialMotion, ionicMaterialInk) {
-  $scope.$parent.showHeader();
-  $scope.$parent.clearFabs();
-  $scope.isExpanded = true;
-  $scope.$parent.setExpanded(true);
-  $scope.$parent.setHeaderFab('right');
-
-  // .fromTemplate() method
-  var template = '<ion-popover-view><ion-header-bar> <h1 class="title">My Popover Title</h1> </ion-header-bar> <ion-content> Hello! </ion-content></ion-popover-view>';
-
-  $scope.popover = $ionicPopover.fromTemplate(template, {
-    scope: $scope
-  });
-
-  // .fromTemplateUrl() method
-  $ionicPopover.fromTemplateUrl('my-popover.html', {
-    scope: $scope
-  }).then(function(popover) {
-    $scope.popover = popover;
-  });
-
-
-  $scope.openPopover = function($event) {
-    $scope.popover.show($event);
-  };
-  $scope.closePopover = function() {
-    $scope.popover.hide();
-  };
-  //Cleanup the popover when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.popover.remove();
-  });
-  // Execute action on hide popover
-  $scope.$on('popover.hidden', function() {
-    // Execute action
-  });
-  // Execute action on remove popover
-  $scope.$on('popover.removed', function() {
-    // Execute action
-  });
-})
 
 .controller('NewlogCtrl', function($scope, $ionicPopover, $ionicLoading, $compile, $stateParams, $timeout, $state, $ionicActionSheet, ionicMaterialInk, ionicMaterialMotion, NodeService) {
   $scope.$parent.showHeader();
@@ -387,26 +330,11 @@ angular.module('starter.controllers', [])
   $scope.$parent.setExpanded(true);
   $scope.$parent.setHeaderFab(false);
 
-  $scope.up = 'true';
-  $scope.up2 = 'false';
-  var list1 = angular.element(document.querySelector('.list.one'));
-  var list2 = angular.element(document.querySelector('.list.two'));
-  list2.addClass('hide');
-
-  $scope.goNext = function(){
-    var list1 = angular.element(document.querySelector('.list.one'));
-
-    list1.addClass('hide');
-
-    var list2 = angular.element(document.querySelector('.list.two'));
-      list2.removeClass('hide');
-
-  }
 
   ionicMaterialMotion.blinds();
   ionicMaterialInk.displayEffect();
 })
-//Controller for the Favourites Page
+//Controller for the Nearby location Page
 .controller('FavoritesCtrl', function($scope, $ionicPopover, $ionicLoading, $compile, $stateParams, $timeout, $state, $ionicActionSheet, ionicMaterialInk, ionicMaterialMotion, NodeService) {
   $scope.$parent.showHeader();
   $scope.$parent.showTab();
@@ -414,64 +342,6 @@ angular.module('starter.controllers', [])
   $scope.isExpanded = true;
   $scope.$parent.setExpanded(true);
   $scope.$parent.setHeaderFab(false);
-
-
-
-
-
-
-  // Action Menu for a node and its options
-  $scope.show = function() {
-    // Show the action sheet
-    var that = this;
-    var hideSheet = $ionicActionSheet.show({
-      buttons: [
-        { text: 'View My Nearby Operations' },
-        { text: 'View All Nearby Operations' }
-      ],
-      titleText: 'About this location',
-      cancelText: 'Cancel',
-      cancel: function() {
-        // add cancel code..
-        hideSheet();
-      },
-      //Functionality defined for clicking any of the 3 buttons: <View> , <Add to Favourites>, <Download>
-      //***IN PROGRESS***//
-      buttonClicked: function(index, button) {
-        //If <View> is clicked
-        if (index === 0) {
-          $scope.nodes.currentIndex++;
-          //IF FOLDER IS ALREADY STORED IN NODES, USE THAT INSTEAD OF NODE SERVICE
-          console.log($scope.nodes.currentIndex);
-          console.log(that.node.name);
-          console.log($scope.nodes.data[$scope.nodes.currentIndex]);
-          if ($scope.nodes.currentIndex > 1 && $scope.nodes.data[$scope.nodes.currentIndex] != null && that.node.name === $scope.nodes.data[$scope.nodes.currentIndex].name) {
-            $timeout(function () {
-              ionicMaterialMotion.fadeSlideInRight();
-            }, 250);}
-          } else if(index === 1){
-            NodeService.addFavoriteNodes(that.node.id);
-          }
-          else if (index === 2){
-            //NodeService.getUserInfo(that.node.wnd_owner, "name")
-            NodeService.getRecentlyAccessed();
-          } else {
-            NodeService.getSubNodesById(that.node.id, $scope.nodes);
-            delayExpansion();
-          }
-
-          return true;
-        },
-
-        //Functionality defined for clicking <Delete> in the node's Action Menu
-        destructiveButtonClicked: function() {
-          //$scope.nodes.currentIndex++;
-          that.showDeleteConfirm(that.node.name, that.node.id, that.node.parent_id);
-          return true;
-        }
-
-      });
-    };
 
     $scope.navTitle = 'Google Map';
     $scope.$on('$ionicView.afterEnter', function(){
@@ -483,8 +353,8 @@ angular.module('starter.controllers', [])
 
     function initialize() {
       //var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
-      var myLatlng = new google.maps.LatLng(43.6427197,-79.38397530000002);
-      var myLatlng2 = new google.maps.LatLng(38.9072,-77.0369);
+      var myLatlng = new google.maps.LatLng(43.6427197,-69.38397530000002);
+      var myLatlng2 = new google.maps.LatLng(38.9072,-74.0369);
       console.log(myLatlng);
       var mapOptions = {
         center: myLatlng,

@@ -1,39 +1,15 @@
-<ion-view>
+<ion-view view-title="">
+  <ion-nav-buttons side="left" >
+    <div style="width: 100%;"><img src="img/login-icon.png" style="max-width:100%;
+  max-height:100%;
+  margin:auto;
+  display:block;"></div>
+  </ion-nav-buttons>
   <ion-content>
-                      <div id="map" data-tap-disabled="true"></div>
+                      <div id="map" data-tap-disabled="true" style="top: 5%;height: 93%;"></div>
               </ion-content>
               <marker position="{{latitude}},{{longitude}}" draggable="true" on-mouseup="markerMove()" visible="true"></marker>
                <ion-footer-bar class="bar-stable">
                   <a ng-click="centerOnMe()" class="button button-icon icon ion-navigate">Find Me</a>
                </ion-footer-bar>
 </ion-view>
-
-<script id="my-popover.html" type="text/ng-template">
-  <ion-popover-view style="position: absolute;
-    top: 13%;
-    left: 50%;
-    z-index: 10;
-    display: block;
-    margin-top: 12px;
-    margin-left: -150px;
-    height: 200px;
-    width: 350px;
-    ">
-    <ion-header-bar>
-      <a href="#" style="width: 56%;position: absolute;left: 42%;top: 22%;">View Details>></a>
-    </ion-header-bar>
-      <ion-content>
-        <div class="item card-item">
-            <div class="card stable-bg ink ink-dark" style="background-color: #FFF">
-                <div class="item item-avatar item-text-wrap">
-                    <span class="avatar" style="background-image: url(img/ionic.jpg); background-size:40px 40px; background-repeat: no-repeat"></span>
-                    <strong style="font-size: 17px">Salmon：75%{{node.data.assignments.name}}</strong>
-                    <p style="padding-top:4px">Avg Weight:700kg {{node.data.assignments.owner_name}}</p>
-                    <p>Avg Fish Lenth: 12-inch {{node.data.assignments.workflow_name}}</p>
-
-                </div>
-            </div>
-        </div>
-    </ion-content>
-  </ion-popover-view>
-</script>

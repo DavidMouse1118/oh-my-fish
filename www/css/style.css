@@ -52,7 +52,7 @@ ion-header-bar.csui-enterprise div.buttons.buttons-left{
 ion-header-bar.csui-enterprise span.left-buttons{
     width: 100%;
     background-color: #f8f8f8;
-    padding-top: 9px;
+    padding-top: 6px;
     padding-left: 18%;
 }
 
@@ -134,8 +134,8 @@ ion-header-bar.bar.bar-header.csui-enterprise{
   background-color: #f8f8f8;
   background-image: url("/img/header.png");
   background-repeat: no-repeat;
-  background-size: 147px 39px;
-  background-position: center 2px;
+  background-size: 171px 31px;
+  background-position: center 20px;
 
 }
 
@@ -371,4 +371,12 @@ i.ion-star span{
     border-bottom-width: 0;
     background-position: top;
     height: 59px;
+}
+
+.list.one .input-label{
+  color: white;
+}
+
+.upload.list .input-label{
+  color:white;
 }
