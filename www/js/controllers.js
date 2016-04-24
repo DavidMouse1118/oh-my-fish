@@ -159,9 +159,9 @@ angular.module('starter.controllers', [])
   $scope.showDeleteConfirm = function(name, id, parentId) {
     console.log(parentId);
     var confirmPopup = $ionicPopup.confirm({
-     title: 'Delete',
-     template: 'Do you really want to delete ' + name + '?'
-   });
+      title: 'Delete',
+      template: 'Do you really want to delete ' + name + '?'
+    });
 
     confirmPopup.then(function(res) {
      if(res) {
@@ -181,8 +181,8 @@ angular.module('starter.controllers', [])
     var that = this;
     var hideSheet = $ionicActionSheet.show({
       buttons: [
-      { text: 'View' },
-      { text: 'Download'}
+        { text: 'View' },
+        { text: 'Download'}
       ],
       destructiveText: 'Delete',
       titleText: 'ACTIONS',
@@ -191,6 +191,7 @@ angular.module('starter.controllers', [])
         // add cancel code..
         hideSheet();
       },
+
 
     //Functionality defined for clicking any of the 2 buttons: <View>, <Download>
     //***IN PROGRESS***//
@@ -208,60 +209,60 @@ angular.module('starter.controllers', [])
         return true;
       },
 
-    //Functionality defined for clicking <Delete> in the node's Action Menu
-    destructiveButtonClicked: function() {
+      //Functionality defined for clicking <Delete> in the node's Action Menu
+      destructiveButtonClicked: function() {
         //$scope.nodes.currentIndex++;
         that.showDeleteConfirm(that.node.name, that.node.id, that.node.parent_id);
         return true;
       }
 
     });
-};
+  };
 
-//Back Button functionality
-$scope.goBack = function(){
-  $scope.nodes.currentIndex--;
-  $timeout(function () {
-    ionicMaterialMotion.fadeSlideInRight();
-  }, 250);
-}
+  //Back Button functionality
+  $scope.goBack = function(){
+    $scope.nodes.currentIndex--;
+    $timeout(function () {
+      ionicMaterialMotion.fadeSlideInRight();
+    }, 250);
+  }
 
-NodeService.getSubNodesById($stateParams.nodeId, $scope.nodes);
-NodeService.getNodeById($stateParams.nodeId, $scope.nodes);
-delayExpansion();
+  NodeService.getSubNodesById($stateParams.nodeId, $scope.nodes);
+  NodeService.getNodeById($stateParams.nodeId, $scope.nodes);
+  delayExpansion();
 
-$timeout(function() {
-  $scope.isExpanded = true;
-  $scope.$parent.setExpanded(true);
-}, 300);
-
-function delayExpansion(){
   $timeout(function() {
-    ionicMaterialMotion.fadeSlideInRight();
-    for (var index in $scope.nodes.data[$scope.nodes.currentIndex]) {
+    $scope.isExpanded = true;
+    $scope.$parent.setExpanded(true);
+  }, 300);
+
+  function delayExpansion(){
+    $timeout(function() {
+      ionicMaterialMotion.fadeSlideInRight();
+      for (var index in $scope.nodes.data[$scope.nodes.currentIndex]) {
         NodeService.parseNode($scope.nodes.data[$scope.nodes.currentIndex][index]);
       }
     }, 2000);
-}
-
-
-function createArray(len, itm) {
-  var arr1 = [itm],
-  arr2 = [];
-  while (len > 0) {
-    if (len & 1) arr2 = arr2.concat(arr1);
-    arr1 = arr1.concat(arr1);
-    len >>>= 1;
   }
-  return arr2;
-}
+
+
+  function createArray(len, itm) {
+    var arr1 = [itm],
+    arr2 = [];
+    while (len > 0) {
+      if (len & 1) arr2 = arr2.concat(arr1);
+      arr1 = arr1.concat(arr1);
+      len >>>= 1;
+    }
+    return arr2;
+  }
   // Set Ink
   ionicMaterialInk.displayEffect();
 })
 
 //Controller for the Login Page
 //Includes authentication using the OTCS Ticket
-.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, AuthenticationService) {
+.controller('LoginCtrl', function($rootScope, $scope, $timeout, $state, $stateParams, ionicMaterialInk, AuthenticationService) {
   $scope.$parent.clearFabs();
 
   $timeout(function() {
@@ -279,6 +280,11 @@ function createArray(len, itm) {
   $scope.password= "";
 
   ionicMaterialInk.displayEffect();
+
+  $scope.auth = function(user, pass){
+    $state.go("app.landingpage");
+    $rootScope.name = user;
+  }
 
   $scope.authenticate = AuthenticationService.login;
 })
@@ -302,14 +308,14 @@ function createArray(len, itm) {
 })
 //Controller for the Landing Page
 //Basic setup for what is shown on the page
-.controller('LandingPageCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+.controller('LandingPageCtrl', function($scope, $rootScope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
   // Set Header
   $scope.$parent.showHeader();
   $scope.$parent.clearFabs();
   $scope.isExpanded = true;
   $scope.$parent.setExpanded(true);
   $scope.$parent.setHeaderFab(false);
-  $scope.name = "ADMIN";
+  $scope.name = $rootScope.name;
   // Set Ink
   ionicMaterialMotion.blinds();
   ionicMaterialInk.displayEffect();
@@ -375,8 +381,8 @@ function createArray(len, itm) {
     var that = this;
     var hideSheet = $ionicActionSheet.show({
       buttons: [
-      { text: 'View My Nearby Operations' },
-      { text: 'View All Nearby Operations' }
+        { text: 'View My Nearby Operations' },
+        { text: 'View All Nearby Operations' }
       ],
       titleText: 'About this location',
       cancelText: 'Cancel',
@@ -384,9 +390,9 @@ function createArray(len, itm) {
         // add cancel code..
         hideSheet();
       },
-    //Functionality defined for clicking any of the 3 buttons: <View> , <Add to Favourites>, <Download>
-    //***IN PROGRESS***//
-    buttonClicked: function(index, button) {
+      //Functionality defined for clicking any of the 3 buttons: <View> , <Add to Favourites>, <Download>
+      //***IN PROGRESS***//
+      buttonClicked: function(index, button) {
         //If <View> is clicked
         if (index === 0) {
           $scope.nodes.currentIndex++;
@@ -402,141 +408,131 @@ function createArray(len, itm) {
             NodeService.addFavoriteNodes(that.node.id);
           }
           else if (index === 2){
-          //NodeService.getUserInfo(that.node.wnd_owner, "name")
-          NodeService.getRecentlyAccessed();
-        } else {
-          NodeService.getSubNodesById(that.node.id, $scope.nodes);
-          delayExpansion();
+            //NodeService.getUserInfo(that.node.wnd_owner, "name")
+            NodeService.getRecentlyAccessed();
+          } else {
+            NodeService.getSubNodesById(that.node.id, $scope.nodes);
+            delayExpansion();
+          }
+
+          return true;
+        },
+
+        //Functionality defined for clicking <Delete> in the node's Action Menu
+        destructiveButtonClicked: function() {
+          //$scope.nodes.currentIndex++;
+          that.showDeleteConfirm(that.node.name, that.node.id, that.node.parent_id);
+          return true;
         }
 
-        return true;
-      },
+      });
+    };
 
-    //Functionality defined for clicking <Delete> in the node's Action Menu
-    destructiveButtonClicked: function() {
-        //$scope.nodes.currentIndex++;
-        that.showDeleteConfirm(that.node.name, that.node.id, that.node.parent_id);
-        return true;
+    $scope.navTitle = 'Google Map';
+    $scope.$on('$ionicView.afterEnter', function(){
+      if ( angular.isDefined( $scope.map ) ) {
+        google.maps.event.trigger($scope.map, 'resize');
+      }
+    });
+
+
+    function initialize() {
+      //var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
+      var myLatlng = new google.maps.LatLng(43.6427197,-79.38397530000002);
+      var myLatlng2 = new google.maps.LatLng(38.9072,-77.0369);
+      console.log(myLatlng);
+      var mapOptions = {
+        center: myLatlng,
+        zoom: 5,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map = new google.maps.Map(document.getElementById("map"),
+      mapOptions);
+
+      //Marker + infowindow + angularjs compiled ng-click
+      var contentString =' <div class="card-item">  <div style = "left: 7%;  top: 11%;  width: 53%;  height: 22px"><a href="#" style="width: 56%;position: absolute;left: 0;top: 0;">View Details>></a></div><div class="stable-bg ink ink-dark" style="background-color: #FFF">  <div class="item item-avatar item-text-wrap" style="border: none; padding:0; text-align: center;"> <strong style="font-size: 17px">Salmon：75%{{node.data.assignments.name}}</strong>  <p style="padding-top:4px">Avg Weight:700kg {{node.data.assignments.owner_name}}</p>  <p>Avg Fish Lenth: 12-inch {{node.data.assignments.workflow_name}}</p>    </div>  </div></div>';
+      var contentString2 =' <div class="card-item">  <div style = "left: 7%;  top: 11%;  width: 53%;  height: 22px"><a href="#" style="width: 56%;position: absolute;left: 0;top: 0;">View Details>></a></div><div class="stable-bg ink ink-dark" style="background-color: #FFF">  <div class="item item-avatar item-text-wrap" style="border: none; padding:0; text-align: center;"> <strong style="font-size: 17px">Cod：80%{{node.data.assignments.name}}</strong>  <p style="padding-top:4px">Avg Weight:900kg {{node.data.assignments.owner_name}}</p>  <p>Avg Fish Lenth: 10-inch {{node.data.assignments.workflow_name}}</p>    </div>  </div></div>';
+      //var contentString ='<div class="item card-item"><div class="card stable-bg ink ink-dark" style="background-color: #FFF"><div class="item item-avatar item-text-wrap"><span class="avatar" style="background-image: url(img/fish-icon.jpg); background-size:40px 40px; background-repeat: no-repeat"></span>  <strong style="font-size: 17px">Salmon：75%{{node.data.assignments.name}}</strong><p style="padding-top:4px">Assigned By: lpl {{node.data.assignments.owner_name}}</p>    <p>Workflow:xkjvgdkjshfv {{node.data.assignments.workflow_name}}</p><div class="card-footer" style="width:120%; left:-65px; position: relative">  <i class="icon ion-clock" style="color: grey;position: relative;font-size:36px"> </i><span ng-show="node.data.assignments.date_due != null" style="padding-right: 1rem">saJDHFGAKEWLI;FYEARGJKFGH{{node.data.assignments.date_due.substring(12,16) + " || "  + node.data.assignments.date_due.substring(0,10)}}</span><span ng-show="node.data.assignments.date_due == null" style="padding-right: 1rem">N/A</span><i class="icon ion-flag" style="color: grey; position: relative; font-size:36px"></i> KJDSFSAEFGLER{{node.data.assignments.status_name}}  <i class="icon ion-alert" style="color: red; position: relative; font-size:36px"></i> SAJHDFEWAJFGJW{{node.data.assignments.priority_name}}  </div>  </div>  </div>  </div>  ';
+      var compiled = $compile(contentString)($scope);
+      var compiled2 = $compile(contentString2)($scope);
+
+      var infowindow = new google.maps.InfoWindow({
+        content: compiled[0]
+      });
+      var infowindow2 = new google.maps.InfoWindow({
+        content: compiled2[0]
+      });
+
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: 'Pune(India)'
+      });
+
+      var marker2 = new google.maps.Marker({
+        position: myLatlng2,
+        map: map,
+        title: 'Pune(India)'
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+        //$scope.show();
+        //$scope.openPopover();
+      });
+      google.maps.event.addListener(marker2, 'click', function() {
+        infowindow2.open(map,marker2);
+        //$scope.show();
+        //$scope.openPopover();
+      });
+
+      $scope.map = map;
+    }
+    initialize();
+
+    $scope.centerOnMe = function() {
+      if(!$scope.map) {
+        return;
       }
 
-    });
-};
+      $scope.loading = $ionicLoading.show({
+        content: 'Getting current location...',
+        showBackdrop: false
+      });
 
-                 $scope.navTitle = 'Google Map';
-                $scope.$on('$ionicView.afterEnter', function(){
-              if ( angular.isDefined( $scope.map ) ) {
-                  google.maps.event.trigger($scope.map, 'resize');
-              }
-            });
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        console.log(pos);
 
+        var mapOptions = {
+          center: pos,
+          zoom: 16,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map"),
+        mapOptions);
 
-            function initialize() {
-                  //var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
-                  var myLatlng = new google.maps.LatLng(43.6427197,-79.38397530000002);
-                  var myLatlng2 = new google.maps.LatLng(38.9072,-77.0369);
-                  console.log(myLatlng);
-                  var mapOptions = {
-                    center: myLatlng,
-                    zoom: 5,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                  };
-                  var map = new google.maps.Map(document.getElementById("map"),
-                      mapOptions);
+        var marker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          title: 'Pune(India)'
+        });
+        $scope.map.setCenter(pos);
 
-                  //Marker + infowindow + angularjs compiled ng-click
-                  var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-                  var compiled = $compile(contentString)($scope);
+        var marker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          title: 'jhfsjfh'
+        });
+        //  console.log(pos.);
+        $scope.loading.hide();
+      }, function(error) {
+        alert('Unable to get location: ' + error.message);
+      });
+    };
 
-                  var infowindow = new google.maps.InfoWindow({
-                    content: compiled[0]
-                  });
+    $scope.clickTest = function() {
+      alert('Example of infowindow with ng-click')
+    };
 
-                  var marker = new google.maps.Marker({
-                    position: myLatlng,
-                    map: map,
-                    title: 'Pune(India)'
-                  });
-
-                  var marker2 = new google.maps.Marker({
-                    position: myLatlng2,
-                    map: map,
-                    title: 'Pune(India)'
-                  });
-
-                  google.maps.event.addListener(marker, 'click', function() {
-                    //infowindow.open(map,marker);
-                    //$scope.show();
-                    $scope.openPopover();
-                  });
-
-                  $scope.map = map;
-                }
-                initialize();
-
-                $scope.centerOnMe = function() {
-                  if(!$scope.map) {
-                    return;
-                  }
-
-                  $scope.loading = $ionicLoading.show({
-                    content: 'Getting current location...',
-                    showBackdrop: false
-                  });
-
-                  navigator.geolocation.getCurrentPosition(function(position) {
-                    var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    console.log(pos);
-
-                    var mapOptions = {
-                      center: pos,
-                      zoom: 16,
-                      mapTypeId: google.maps.MapTypeId.ROADMAP
-                    };
-                    var map = new google.maps.Map(document.getElementById("map"),
-                        mapOptions);
-
-                      var marker = new google.maps.Marker({
-                          position: pos,
-                          map: map,
-                          title: 'Pune(India)'
-                        });
-                    $scope.map.setCenter(pos);
-
-                    var marker = new google.maps.Marker({
-                      position: pos,
-                      map: map,
-                      title: 'jhfsjfh'
-                    });
-                  //  console.log(pos.);
-                    $scope.loading.hide();
-                  }, function(error) {
-                    alert('Unable to get location: ' + error.message);
-                  });
-                };
-
-                $scope.clickTest = function() {
-                  alert('Example of infowindow with ng-click')
-                };
-
-                var template = '<ion-popover-view><ion-header-bar> <h1 class="title">My Popover Title</h1> </ion-header-bar> <ion-content> Hello! </ion-content></ion-popover-view>';
-
- $scope.popover = $ionicPopover.fromTemplate(template, {
-   scope: $scope
- });
-
- // .fromTemplateUrl() method
- $ionicPopover.fromTemplateUrl('my-popover.html', {
-   scope: $scope
- }).then(function(popover) {
-   $scope.popover = popover;
- });
-
-
- $scope.openPopover = function() {
-   $scope.popover.show();
- };
- $scope.closePopover = function() {
-   $scope.popover.hide();
- };
-
-});
+  });
