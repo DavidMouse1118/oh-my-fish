@@ -30,6 +30,16 @@ angular.module('starter.controllers', [])
     document.getElementsByTagName('ion-nav-bar')[0].style.display = 'block';
   };
 
+  $scope.hideTab = function() {
+      var tab = angular.element(document.querySelector('.tabs-icon-top'));
+      tab.css('display', 'none');
+  };
+
+  $scope.showTab = function() {
+    var tab = angular.element(document.querySelector('.tabs-icon-top'));
+    tab.css('display', 'block');
+  };
+
   $scope.noHeader = function() {
     var content = document.getElementsByTagName('ion-content');
     for (var i = 0; i < content.length; i++) {
@@ -135,6 +145,7 @@ angular.module('starter.controllers', [])
   // Set Header
   console.log($stateParams);
   $scope.$parent.showHeader();
+  $scope.$parent.showTab();
   $scope.$parent.clearFabs();
   $scope.$parent.setHeaderFab('left');
   $scope.nodes = {data: createArray(25, null), currentIndex: 0};
@@ -269,6 +280,10 @@ angular.module('starter.controllers', [])
     $scope.$parent.hideHeader();
   }, 0);
 
+  $timeout(function() {
+    $scope.$parent.hideTab();
+  }, 0);
+
   $scope.errorgone = function() {
     var errormessage = angular.element(document.querySelector('.login-error'));
     errormessage.css('display','none');
@@ -282,7 +297,7 @@ angular.module('starter.controllers', [])
   ionicMaterialInk.displayEffect();
 
   $scope.auth = function(user, pass){
-    $state.go("app.landingpage");
+    $state.go("app.favorites");
     $rootScope.name = user;
   }
 
@@ -369,6 +384,7 @@ angular.module('starter.controllers', [])
 //Controller for the Favourites Page
 .controller('FavoritesCtrl', function($scope, $ionicPopover, $ionicLoading, $compile, $stateParams, $timeout, $state, $ionicActionSheet, ionicMaterialInk, ionicMaterialMotion, NodeService) {
   $scope.$parent.showHeader();
+  $scope.$parent.showTab();
   $scope.$parent.clearFabs();
   $scope.isExpanded = true;
   $scope.$parent.setExpanded(true);

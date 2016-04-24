@@ -1,40 +1,23 @@
 <ion-side-menus enable-menu-with-back-views="true">
     <ion-side-menu-content>
         <ion-nav-bar style="background-color: #F7F7F7; color:#E08D17;" class="csui-enterprise" ng-class="{expanded: isExpanded, 'has-header-fab-left': hasHeaderFabLeft, 'has-header-fab-right': hasHeaderFabRight}" align-title="left" animation="no-animation">
-          <ion-nav-buttons side="right">
-              <button class="button button-icon button-clear ion-android-more-vertical" menu-toggle="right" style="color:#00a4d8">
-              </button>
-          </ion-nav-buttons>
+
         </ion-nav-bar>
         <ion-nav-view name="fabContent"></ion-nav-view>
         <ion-nav-view name="menuContent" ng-class="{expanded: isExpanded}" ></ion-nav-view>
     </ion-side-menu-content>
-    <ion-side-menu side="right">
-        <ion-header-bar class="light-bg expanded">
-            <span class="csui avatar" style="background: url('img/icons/image_user_placeholder.svg'); background-size: cover;"></span>
-            <h2>Admin</h2>
-        </ion-header-bar>
-        <ion-content class="csui sidemenu has-expanded-header">
-            <ion-list>
-                <ion-item nav-clear menu-close ui-sref="app.enterprise({nodeId: 2000})">
-                    My Operations Log
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.activity" ng-click="loadRecentlyAccessed()">
-                    Recently Accessed
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.landingpage">
-                    Assignments (to Landing Page)
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.favorites">
-                    Favorites
-                </ion-item>
-                 <ion-item nav-clear menu-close ui-sref="app.login">
-                    Sign out
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.landingpage">
-                    Help
-                </ion-item>
-            </ion-list>
-        </ion-content>
-    </ion-side-menu>
 </ion-side-menus>
+<div class="tabs tabs-icon-top" style="background-color: #387ef5;   height: 53px;">
+  <a href="#/app/favorites" class="tab-item" style="color: white; font-size: 13px; float: left; width:33%;">
+    <i class="icon ion-android-add-circle"></i>
+    New Log
+  </a>
+  <a href="#/app/favorites" class="tab-item" style="color: white;  font-size: 13px; float: left; width:33%;">
+    <i class="icon ion-android-map"></i>
+    Nearby Activities
+  </a>
+  <a href="#/app/enterprise/2000" class="tab-item" style="color: white;  font-size: 13px">
+    <i class="icon ion-android-person"></i>
+    My Operations
+  </a>
+</div>

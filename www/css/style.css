@@ -364,3 +364,11 @@ i.ion-star span{
     height: 33%;
     width: 100%;
 }
+
+.bar-footer {
+    bottom: 0;
+    border-top-width: 1px;
+    border-bottom-width: 0;
+    background-position: top;
+    height: 59px;
+}
