@@ -1,9 +1,9 @@
-<ion-view view-title="Login" align-title="left">
+<ion-view view-title="" align-title="left">
     <ion-content class="cs-wrap" style="background-size: cover;">
         <div class="hero no-header flat">
             <div class="content">
                 <div class="">
-                  <img src = "img/icons/signin-cs.svg" class="ot-logo">
+                  <img src = "img/landinglogo.png" class="ot-logo">
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
               <span ng-show="password != ''" id="otds_password_clearer" class="clear-icon" ng-click="password = ''"></span>
             </div>
             <div class="csui padding">
-              <a href="#/app/landingpage" class="csui button button-full button-assertive ink" ng-disabled="username == ''|| password == ''"><h4>Sign in</h4></a>
+              <button ng-click="auth(username, password)" class="csui button button-full button-assertive ink" ng-disabled="username == ''|| password == ''"><h4>Sign in</h4></button>
             </div>
           </form>
         </div>

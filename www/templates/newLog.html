@@ -1,0 +1,70 @@
+<ion-view view-title='Start a new operation'>
+  <ion-nav-buttons side="left" >
+    <button class="button button-clear back-button header-item animate-fade-slide-in-right" style="border-color: #F8F8F" ng-click="goBack()">
+      <i class="icon ion-ios-arrow-back" style="color: #20AFDC; font-size: 25px;"> </i>
+    </button>
+  </ion-nav-buttons>
+  <ion-content ng-class="{expanded:$scope.isExpanded}" style = "top: 72px;bottom: 53px;">
+    <div class="upload list" style="padding-top:2px;font-color:white;padding-right:10px">
+      <label class="item item-input item-stacked-label" style="font-color:white">
+        <span class="input-label">User Name</span>
+        <input  ng-model = "UserName" type="text" placeholder="Titel.Name" >
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Address</span>
+        <input  ng-model = "Address" type="text" >
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Phone</span>
+        <input  ng-model = "Phone" type="Tel" >
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Start Date</span>
+        <input  ng-model = "Startdate" type="date" placeholder="0000/00/00 00:00(24hr)">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">End Date</span>
+        <input  ng-model = "Enddate" type="date" placeholder="0000/00/00 00:00(24hr)">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Name of vessel</span>
+        <input  ng-model = "Vessel" type="text" placeholder="">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Details of vessel</span>
+        <input  ng-model = "DeVessel" type="text" placeholder="Gear Type, Vessel characteristics, etc">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Dealer Information</span>
+        <input  ng-model = "Dealer" type="text" placeholder="Dealer #, Name, Address, etc. if fish is sold to market">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Vessel operator</span>
+        <input  ng-model = "Vesselperson" type="text" placeholder="">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Fish Names</span>
+        <input  ng-model = "Fishname" type="text" placeholder="Name,Name,Name">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Fish Total Weight</span>
+        <input  ng-model = "Fishcount" type="text" placeholder="Weight,Weight,Weight">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Fish Count</span>
+        <input  ng-model = "FishCount" type="text" placeholder="Number,Number,Number">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Fish appx Length</span>
+        <input  ng-model = "FishLength" type="text" placeholder="meter,meter,meter">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Fish group appx weight (single)</span>
+        <input  ng-model = "Fishsingle" type="text" placeholder="kg,kg,kg">
+      </label>
+        <div class="csui padding">
+          <button ng-click = "UploadingALog(vessalName)" class="csui button button-full button-assertive ink"><h4>Submit</h4></button>
+        </div>
+    </div>
+  </ion-content>
+</ion-view>
