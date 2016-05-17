@@ -1,7 +1,5 @@
 # oh-my-fish
 Standardized Fisheries Data management and sharing Android App
-# oh-my-fish
-Standardized Fisheries Data management and sharing Android App
 
 ## Entry project for Fishhackthon 2016 Toronto.
 The purpose of this app is to provide a standardized, user-friendly platform for smaller fishing groups or individuals to manage and share their fishery data
