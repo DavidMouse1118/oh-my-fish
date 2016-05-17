@@ -143,14 +143,16 @@ angular.module('starter.controllers', [])
 
 //Controller for the Enterprise Workspace page
 //Here are defined the methods and actions specific to user behaviour allowed on the Enterprise Workspace page
-.controller('EnterpriseCtrl', function($scope, $stateParams, $state, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicActionSheet, $ionicPopup, NodeService) {
+.controller('EnterpriseCtrl', function($scope, $stateParams, $state, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicActionSheet, $ionicPopup,$firebaseArray, NodeService) {
   // Set Header
+   var ref = new Firebase("https://oh-my-fish.firebaseio.com/");
+
   console.log($stateParams);
   $scope.$parent.showHeader();
   $scope.$parent.showTab();
   $scope.$parent.clearFabs();
   $scope.$parent.setHeaderFab('left');
-  $scope.nodes = {data: createArray(25, null), currentIndex: 0};
+  $scope.nodes = $firebaseArray(ref.child)
 
   //Reload the workspace page
   $scope.reloadingTheEnterprise = function(id){
@@ -184,7 +186,6 @@ angular.module('starter.controllers', [])
      }
    });
  };
-  $scope.testOperations =  {};
 
   // Triggered on a button click, or some other target
   // Action Menu for a node and its options
@@ -239,8 +240,6 @@ angular.module('starter.controllers', [])
     }, 250);
   }
 
-  NodeService.getSubNodesById($stateParams.nodeId, $scope.nodes);
-  NodeService.getNodeById($stateParams.nodeId, $scope.nodes);
   delayExpansion();
 
   $timeout(function() {

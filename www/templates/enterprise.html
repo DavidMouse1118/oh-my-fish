@@ -13,27 +13,15 @@
   </ion-header-bar>
 
   <ion-content ng-class="{expanded:isExpanded}">
-      <div class="list animate-fade-slide-in-right" style="padding-top:55px">
-        <a ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px; background-color: white;">
+    <div class="content has-header">
+      <div class=" animate-fade-slide-in-right" style="padding-top:20px">
+        <a ng-repeat="node in nodes" ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px;">
           <img src="img/log_icon.png">
-          <h2>Location: 34.76N,45.78W</h2>
-          <p>Time: April 24th 12:09:22 EST</p>
-          <i class="icon ion-chevron-right muted"><img src="img/icons/circle_arrow_right.svg" style="position: absolute; left:-2px; top: 20px"></i>
-        </a>
-        <li class="divider" style="height: 5px"></li>
-        <a ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px;background-color: white">
-          <img src="img/log_icon.png">
-          <h2>Location: 46.33N, 43.43W</h2>
-          <p>Time: March 1st 23:11:00 PST</p>
-          <i class="icon ion-chevron-right muted"><img src="img/icons/circle_arrow_right.svg" style="position: absolute; left:-2px; top: 20px"></i>
-        </a>
-        <a ng-repeat="node in nodes.data[nodes.currentIndex]" ng-click="show();" class="item item-avatar item-icon-right" style="min-height: 75px;">
-          <img src="img/log_icon.png">
-          <h2>{{node.name}}</h2>
-          <p>{{node.description}}</p>
+          <h2>Location: {{node.location.coord[0].toFixed(3)}} N {{node.location.coord[1].toFixed(3)}} E</h2>
+          <p>Time ：{{node.date.end}}</p>
           <i class="icon ion-chevron-right muted"><img src="img/icons/circle_arrow_right.svg" style="position: absolute; left:-2px; top: 20px"></i>
         </a>
       </div>
+    </div>
   </ion-content>
-
 </ion-view>

@@ -323,7 +323,7 @@ body > ion-nav-view > ion-side-menus > ion-side-menu-content > ion-nav-bar > div
     /*background: linear-gradient(to bottom, #005077, #0094C6);*/
 }
 
-ion-side-menu-content > ion-nav-view:nth-child(3) > ion-view > ion-content > div.scroll > div > div > a {
+body > ion-nav-view > div > ion-side-menus > ion-side-menu-content > ion-nav-view:nth-child(3) > ion-view > ion-content > div > div > div > a {
     background-color: #FFFFFF;
     border-style: outset;
     border-color: transparent;
