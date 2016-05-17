@@ -52,7 +52,7 @@ ion-header-bar.csui-enterprise div.buttons.buttons-left{
 ion-header-bar.csui-enterprise span.left-buttons{
     width: 100%;
     background-color: #f8f8f8;
-    padding-top: 9px;
+    padding-top: 6px;
     padding-left: 18%;
 }
 
@@ -123,6 +123,7 @@ body .item{
 
 div.title.title-left.header-item{
   color: #00a4d8;
+  font-style: italic;
 }
 
 .icon.ion-android-arrow-back{
@@ -131,10 +132,10 @@ div.title.title-left.header-item{
 
 ion-header-bar.bar.bar-header.csui-enterprise{
   background-color: #f8f8f8;
-  background-image: url("/img/icons/header_content_server.svg");
+  background-image: url("/img/header.png");
   background-repeat: no-repeat;
-  background-size: 189px 70px;
-  background-position: center -13px;
+  background-size: 171px 31px;
+  background-position: center 20px;
 
 }
 
@@ -163,7 +164,7 @@ ion-content.csui.sidemenu ion-item a.item-content{
 }
 
 .hero.no-header {
-    height: 36%;
+    height: 52%;
 }
 
 .ot-logo{
@@ -322,7 +323,7 @@ body > ion-nav-view > ion-side-menus > ion-side-menu-content > ion-nav-bar > div
     /*background: linear-gradient(to bottom, #005077, #0094C6);*/
 }
 
-ion-side-menu-content > ion-nav-view:nth-child(3) > ion-view > ion-content > div.scroll > div > div > a {
+body > ion-nav-view > div > ion-side-menus > ion-side-menu-content > ion-nav-view:nth-child(3) > ion-view > ion-content > div > div > div > a {
     background-color: #FFFFFF;
     border-style: outset;
     border-color: transparent;
@@ -362,4 +363,20 @@ i.ion-star span{
     margin-left: -110px;
     height: 33%;
     width: 100%;
+}
+
+.bar-footer {
+    bottom: 0;
+    border-top-width: 1px;
+    border-bottom-width: 0;
+    background-position: top;
+    height: 59px;
+}
+
+.list.one .input-label{
+  color: white;
+}
+
+.upload.list .input-label{
+  color:white;
 }
